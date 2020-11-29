@@ -32,7 +32,7 @@ for i = 1 : c
   sigma (1,i) = std(feature);    
 endfor
 
-for i = 1:c:
+for i = 1:c
   X_norm(:,i) = (X(:,i)- mu(1,i))/sigma(1,i);
 endfor
 
