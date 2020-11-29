@@ -25,10 +25,16 @@ sigma = zeros(1, size(X, 2));
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
+[r c] = size(X);  % Finding no. of Rows and Columns as each column is feature
+for i = 1 : c
+  feature = X(:,i);
+  mu(1,i) = mean(feature);
+  sigma (1,i) = std(feature);    
+endfor
 
-
-
-
+for i = 1:c:
+  X_norm(:,i) = (X(:,i)- mu(1,i))/sigma(1,i);
+endfor
 
 
 
