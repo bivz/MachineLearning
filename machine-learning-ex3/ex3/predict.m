@@ -21,10 +21,15 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+X = [ones(rows(X), 1) X]; % adding column of 1s for the bias unit to match
 
+a2 = sigmoid(X * Theta1');
+a2 = [ones(rows(a2), 1) a2];
 
+a3 = sigmoid(a2 * Theta2');
+size(a3);
 
-
+[val, p] = max(a3, [], 2);
 
 
 
