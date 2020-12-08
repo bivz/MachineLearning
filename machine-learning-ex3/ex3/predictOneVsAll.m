@@ -31,10 +31,14 @@ X = [ones(m, 1) X];
 %       
 
 
+size(X);
+size(all_theta);
 
+predict_all = sigmoid(X * all_theta');
 
+[val,p] = max(predict_all, [], 2);
 
-
+size(p);
 
 % =========================================================================
 
