@@ -62,23 +62,47 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+%% Solution Part 1
+ a_1 = [ones(rows(X), 1) X];
+ z_2 = a_1 * Theta1';
+ a_2 = sigmoid(z_2);
+ a_2 = [ones(rows(a_2), 1) a_2];
+ z_3 = a_2 * Theta2';
+ a_3 = sigmoid(z_3);
+ h_x = a_3;
+ 
+ % coding y to Y 
+ I = eye(num_labels);
+ Y = zeros(m, num_labels);
+ for i = 1:m
+   Y(i, :) = I(y(i), :);
+ endfor
 
 
+% J = sum(sum((-Y).*log(h_x) - (1-Y).*log(1-h_x), 2))/m;
+
+reg = (lambda/(2*m))*(sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2))); % Making sure we done include bias
+
+J = (1/m) * sum(sum((-Y).*log(h_x)-(1-Y).*log(1-h_x)))+reg;
 
 
+% Part 2 Backpropagation algorithm
+%Step 1 values of a_x and z_x already calculated above
 
+%Step 2
+del_3 = a_3 .- Y;
 
+% Step 3
+del_2 = (del_3 * Theta2) .* sigmoidGradient([ones(size(z_2, 1), 1) z_2]);
+del_2 = del_2(:, 2:end);  % Removing Bias terms
 
+% Step 4
+DELTA_1 = a_1' * del_2;
+DELTA_2 = a_2' * del_3;
 
-
-
-
-
-
-
-
-
-
+%Step 5
+Theta1_grad = DELTA_1./m;
+Theta2_grad = DELTA_2./m;
 
 % -------------------------------------------------------------
 
