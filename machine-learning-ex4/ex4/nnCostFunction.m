@@ -97,12 +97,19 @@ del_2 = (del_3 * Theta2) .* sigmoidGradient([ones(size(z_2, 1), 1) z_2]);
 del_2 = del_2(:, 2:end);  % Removing Bias terms
 
 % Step 4
-DELTA_1 = a_1' * del_2;
-DELTA_2 = a_2' * del_3;
+DELTA_1 = del_2' * a_1;
+DELTA_2 = del_3' * a_2;
 
 %Step 5
-Theta1_grad = DELTA_1./m;
-Theta2_grad = DELTA_2./m;
+% Calculating Regularized terms. 
+T_1 = [zeros(rows(Theta1), 1) Theta1(:, (2:end))];  % Removing the first column for reg comutationa as its not added for j =0
+T_2 = [zeros(rows(Theta2), 1) Theta2(:, (2:end))];  % Removing the first column for reg comutationa as its not added for j =0
+
+P1 = (lambda/m)* T_1;  % Penalty terms
+P2 = (lambda/m)* T_2;
+
+Theta1_grad = DELTA_1./m + P1;
+Theta2_grad = DELTA_2./m + P2;
 
 % -------------------------------------------------------------
 
