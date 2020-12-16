@@ -1,10 +1,6 @@
 %% Machine Learning Online Class - Exercise 3 | Part 1: One-vs-all
 
 %  Instructions
-
-%THis is my change 
-
-
 %  ------------
 %
 %  This file contains code that helps you get started on the
