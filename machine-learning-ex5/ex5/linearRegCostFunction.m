@@ -19,9 +19,9 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
-
-
-
+penalty = (lambda/(2*m)) * (sum(theta.^2)- theta(1).^2);  % Excluding the theta(1) term 
+h_x = (X * theta); 
+J = (1/(2*m)) * sum((h_x - y).^2) + penalty;  % Cost Function Calculation
 
 
 
