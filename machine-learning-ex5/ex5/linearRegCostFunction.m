@@ -23,9 +23,11 @@ penalty = (lambda/(2*m)) * (sum(theta.^2)- theta(1).^2);  % Excluding the theta(
 h_x = (X * theta); 
 J = (1/(2*m)) * sum((h_x - y).^2) + penalty;  % Cost Function Calculation
 
+% Calculating Regularized Linear Regression Gradient 
+penalty_grad = (lambda/m) * theta;
+penalty_grad(1) = 0;
 
-
-
+grad = (1/m)* (X' * (h_x - y)) + penalty_grad;
 
 
 
