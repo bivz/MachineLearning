@@ -27,6 +27,18 @@ centroids = zeros(K, n);
 %
 
 
+for i = 1: K
+  mult = (idx == i);
+  X_t = mult .* X;
+  mean(nonzeros(X_t(:,1)));
+   mean(nonzeros(X_t(:,2)));
+  for j = 1:n
+    centroids(i,j) = mean(nonzeros(X_t(:,j)));    
+  endfor
+endfor
+
+
+
 
 
 
